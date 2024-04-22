@@ -1,15 +1,20 @@
 package enteti;
 
-public interface Order {
+import java.util.List;
+
+public interface Purchase {
 
 	boolean isCreditCardNumbervalid(String creditcardnumber);
 	
 	void setcreditcardnumber(String userinput);
 	
-	void setproducts(Product[]products);
+	
+	List<Product> getProducts();
 	
 	void setCustomerId(int customerid);
 	
 	int getcustomerid();
+
+	void setproducts(List<Product> products);
 
 }

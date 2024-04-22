@@ -1,16 +1,18 @@
 package enteti.impl;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
-import enteti.Order;
 import enteti.Product;
+import enteti.Purchase;
 
-public class DefaultOrder implements Order {
+public class DefaultPurchase implements Purchase {
 
 	private static final int DIGITS_IN_CREDIT_CARD = 16;
 
 	private String creditcardnumber;
-	private Product[] products;
+	private List<Product> products;
 	private int customerid;
 
 	@Override
@@ -29,8 +31,8 @@ public class DefaultOrder implements Order {
 	}
 
 	@Override
-	public void setproducts(Product[] products) {
-		this.products=products;
+	public void setproducts(List<Product> products) {
+		this.products=new ArrayList<>(products);
 
 	}
 
@@ -47,7 +49,15 @@ public class DefaultOrder implements Order {
 
 	@Override
 	public String toString() {
-		return "Order : customer id -" + this.customerid + "\t" + "credit card number- " +this.creditcardnumber+"\t"+"products- " +Arrays.toString(this.products);
+		return "Order : customer id -" + this.customerid + "\t" + "credit card number- " +this.creditcardnumber+"\t"+"products- "
+	+this.products;
+	}
+
+	@Override
+	public List<Product> getProducts() {
+		
+		ArrayList<Product> copy = new ArrayList<Product>(this.products);
+		return copy;
 	}
 	
 }

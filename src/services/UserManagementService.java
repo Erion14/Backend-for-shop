@@ -10,4 +10,6 @@ public interface UserManagementService {
 	
 	User getUserByEmail(String userEmail);
 
+	void resetPasswordForUser(User user);
+
 }

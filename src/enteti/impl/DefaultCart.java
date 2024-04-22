@@ -1,32 +1,22 @@
 package enteti.impl;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 
 import enteti.Cart;
 import enteti.Product;
 
 public class DefaultCart implements Cart {
 
-	private static final int PRODUCT_CAPACITY = 10;
-	private Product[] products;
-	private int lastindex;
-
+private List<Product> products;
+	
 	{
-		products = new Product[PRODUCT_CAPACITY];
+		products = new ArrayList<>();
 	}
-
+	
 	@Override
-	public boolean isempty() {
-		if (products == null || products.length == 0) {
-			return true;
-		}
-
-		for (Product product : products) {
-			if (product != null) {
-				return false;
-			}
-		}
-		return false;
+	public boolean isEmpty() {
+		return products.isEmpty();
 	}
 
 	@Override
@@ -34,34 +24,17 @@ public class DefaultCart implements Cart {
 		if (product == null) {
 			return;
 		}
-		if (products.length <= lastindex) {
-			products = Arrays.copyOf(products, products.length << 1);
-
-		}
-		products[lastindex++] = product;
+		products.add(product);
 	}
 
 	@Override
-	public Product[] getproducts() {
-		int nonnull = 0;
-		for (Product product : products) {
-			if (product != null) {
-				nonnull++;
-			}
-		}
-		Product[] nonnulli = new Product[nonnull];
-		int index = 0;
-		for (Product product : products) {
-			if(product != null) {
-				nonnulli[index++]=product;
-			}
-		}
-		return nonnulli;
+	public List<Product> getProducts() {
+//		return Collections.unmodifiableList(this.products); // returns unmodifiable List
+		return this.products;
 	}
 
 	@Override
 	public void clear() {
-		products = new Product[PRODUCT_CAPACITY];
+		products.clear();
 	}
-
 }

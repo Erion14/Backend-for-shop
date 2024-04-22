@@ -1,13 +1,15 @@
 package enteti;
 
+import java.util.List;
+
 public interface Cart {
 
 	
-	boolean isempty();
+	boolean isEmpty();
 	
 	void addProduct(Product productbyID);
 	
-	Product[] getproducts();
+	List<Product> getProducts();
 	
 	
 	 void clear();

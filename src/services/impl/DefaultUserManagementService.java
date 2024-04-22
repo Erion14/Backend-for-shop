@@ -4,6 +4,7 @@ import java.util.Arrays;
 
 import enteti.User;
 import services.UserManagementService;
+import utils.mail.MailSender;
 
 public class DefaultUserManagementService implements UserManagementService {
 	private static final String SAME_EMAIL_ERROR = "This email is in use by another user";
@@ -93,6 +94,11 @@ public class DefaultUserManagementService implements UserManagementService {
 			instance = new DefaultUserManagementService();
 		}
 		return instance;
+	}
+	
+	@Override
+	public void resetPasswordForUser(User user) {
+		MailSender.sendEmail(user.getEmail(), "Please, use this password to login: " + user.getPassword());
 	}
 
 }
