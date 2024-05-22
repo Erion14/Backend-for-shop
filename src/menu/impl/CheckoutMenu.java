@@ -51,15 +51,21 @@ public class CheckoutMenu implements Menu {
 		order.setcreditcardnumber(creditCardNumber);
 		order.setproducts(context.getSessioncart().getProducts());
 		order.setCustomerId(context.getloggedinUser().getId());
-		orderManagementService.addOrder(order);
-		// TODO Auto-generated method stub
+		purchaseManagementService.addPurchase(order);
 		return true;
 	}
 
 	@Override
 	public void printmenuheader() {
 		System.out.println("Checkout menu");
-		System.out.println("Enter your credit card number without spaces and press enter to confirm purchase");;
+		String creditCard = context.getloggedinUser().getCreditCard();
+		if (creditCard != null && !creditCard.isEmpty()) {
+			System.out.println("Confirm your credit card number \"" + creditCard + "\" by writing \"" + CONFIRMATION_CREDIT_CARD_WORD + "\": ");
+			
+		}else {
+			System.out.println("Enter your credit card number without spaces and press enter to confirm purchase");;
+
+		}
 
 	}
 

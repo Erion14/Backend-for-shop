@@ -14,7 +14,7 @@ public class SignInMenu implements Menu {
 	
 	{
 		context = ApplicationContext.getInstance();
-		userManagementService = DefaultUserManagementService.getInstance();
+		userManagementService = new MySqlUserManagementService;
 		
 	}
 
@@ -22,6 +22,7 @@ public class SignInMenu implements Menu {
 	public void start() {
 		printmenuheader();
 		Scanner sc = new Scanner(System.in);
+		
 		System.out.print("Please, enter your email: ");
 		String userEmail = sc.next();
 		
@@ -30,7 +31,7 @@ public class SignInMenu implements Menu {
 		
 		User user = userManagementService.getUserByEmail(userEmail);
 		if(user != null && user.getPassword().equals(userPassword)) {
-			System.out.printf("Glad to see you back %s %s",user.getFirstname(),user.getLastname()+System.lineSeparator());
+			System.out.printf("Glad to see you back %s %s",user.getfirstName(),user.getlastName()+System.lineSeparator());
 			context.setloggedinUser(user);
 			
 		}else {

@@ -16,7 +16,7 @@ public class ProductCatalogMenu implements Menu {
 
 	{
 		context = ApplicationContext.getInstance();
-		productManagementService = DefaultProductManagementService.getInstance();
+		productManagementService = new MySqlProductManagementService();
 
 	}
 
@@ -42,7 +42,7 @@ public class ProductCatalogMenu implements Menu {
 
 			if (userInput.equalsIgnoreCase(CHECKOUT_COMMAND)) {
 				Cart sessionCart = context.getSessioncart();
-				if (sessionCart == null || sessionCart.isempty()) {
+				if (sessionCart == null || sessionCart.isEmpty()) {
 					System.out.println("Your cart is empty. Please, add a product");
 
 				} else {
@@ -65,12 +65,13 @@ public class ProductCatalogMenu implements Menu {
 
 	}
 
+
 	private void processAddToCart(Product productToAddToCart) {
 		context.getSessioncart().addProduct(productToAddToCart);
 		System.out.printf("Product %s has been added to your cart. "
 				+ "If you want to add a new porduct - enter the product id"
 				+ "If you want to proceed with checkout - enter word"
-				+ "'checkout' to console %n", productToAddToCart.getProductname() );
+				+ "'checkout' to console %n", productToAddToCart.getProductName() );
 		
 
 	}

@@ -16,7 +16,7 @@ public class MainMenu implements Menu {
 	private static final String MAIN_MENU_TEXT_FOR_LOGGED_IN_USER = "Please, enter number in console to proceed."
 			+ System.lineSeparator() + "1. Sign Up" + System.lineSeparator() + "2. Sign Out" + System.lineSeparator()
 			+ "3. Product Catalog" + System.lineSeparator() + "4. My Orders" + System.lineSeparator() + "5. Settings"
-			+ System.lineSeparator() + "6. Customer List";;
+			+ System.lineSeparator() + "6. Customer List" + System.lineSeparator() + "7. Reset Password";
 
 	private ApplicationContext context;
 	{
@@ -64,8 +64,12 @@ public class MainMenu implements Menu {
 					break mainLoop;
 				case 6:
 					menuToNavigate = new CustomerListMenu();
+					break mainLoop;
+				case 7:
+					menuToNavigate = new ResetPasswordMenu();
+					break mainLoop;
 				default:
-					System.out.println("Only numbers 1 to 5 are allowed. Try one more time");
+					System.out.println("Only numbers 1 to 7 are allowed. Try one more time");
 					continue;
 
 				}

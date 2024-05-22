@@ -1,19 +1,21 @@
 package menu.impl;
 
+import java.util.List;
+
 import config.ApplicationContext;
 import enteti.Order;
+import enteti.Purchase;
 import menu.Menu;
-import services.OrderManagementService;
-import services.impl.DefaultOrderManagementService;
+import services.PurchaseManagementService;
 
 public class MyOrdersMenu implements Menu{
 	private ApplicationContext context;
-	private OrderManagementService orderManagementService;
+	private PurchaseManagementService purchaseManagementService;
 	
 	
 	{
 		context = ApplicationContext.getInstance();
-		orderManagementService = DefaultOrderManagementService.getInstance();
+		purchaseManagementService = MySqlPurchaseManagementService;
 	}
 
 	@Override
@@ -34,14 +36,13 @@ public class MyOrdersMenu implements Menu{
 	
 
 	private void printUserOrdersToConsole() {
-		Order[] loggedInUserOrders = orderManagementService.getOrdersByUserId(context.getloggedinUser().getId());
-		
-		
-		if (loggedInUserOrders == null || loggedInUserOrders.length==0) {
+		List<Purchase> loggedInUserOrders = purchaseManagementService
+				.getPurchaseByUserId(context.getloggedinUser().getId());
+		if (loggedInUserOrders == null || loggedInUserOrders.size() ==0) {
 			System.out.println("Unfortunately , you don't have any orders yet. " + 
 		"Navigate back to main menu to place new order");
 		}else {
-			for (Order order : loggedInUserOrders) {
+			for (Purchase order : loggedInUserOrders) {
 				System.out.println(order);
 			}
 		}

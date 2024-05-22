@@ -14,7 +14,7 @@ public class SignUpMenu implements Menu {
 	private ApplicationContext context;
 	
 	{
-		userManagementService = DefaultUserManagementService.getInstance();
+		userManagementService = new MySqlUserManagementService();
 		context = ApplicationContext.getInstance();
 	}
 	
@@ -30,14 +30,16 @@ public class SignUpMenu implements Menu {
 			System.out.print("Please, enter your password: ");
 			String password = sc.next();
 			System.out.print("Please, enter your email: ");
-			
 			sc = new Scanner(System.in);
 			String email = sc.nextLine();
+			sc = new Scanner(System.in);
+			System.out.println("Please, enter your credit card number: ");
+			String creditCard = sc.next();
 			
-			User user = new DefaultUser(firstName,lastName,password,email);
+			User user = new DefaultUser(firstName,lastName,password,email, creditCard);
 			
 			String errorMessage = userManagementService.registerUser(user);
-			if (errorMessage == null || errorMessage.isEmpty()) {
+			if (errorMessage == null || errorMessage.equals(MySqlUserManagementService)) {
 				context.setloggedinUser(user);
 				System.out.println("New user is created");
 				

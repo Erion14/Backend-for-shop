@@ -1,5 +1,7 @@
 package menu.impl;
 
+import java.util.List;
+
 import config.ApplicationContext;
 import enteti.User;
 import menu.Menu;
@@ -11,7 +13,7 @@ public class CustomerListMenu implements Menu {
 	private UserManagementService userManagementService;
 	
 	{
-		userManagementService = DefaultUserManagementService.getInstance();
+		userManagementService = MySqlUserManagementService();
 		context = ApplicationContext.getInstance();
 		
 	}
@@ -21,10 +23,10 @@ public class CustomerListMenu implements Menu {
 	@Override
 	public void start() {
 		printmenuheader();
+		List<User> users = userManagementService.getUsers();
 		
-		User[] users = userManagementService.getUsers();
 		
-		if(users.length==0) {
+		if(users == null || users.size() == 0) {
 			System.out.println("Unfortunately, there are no customers");
 		} else {
 			for(User user : users) {
