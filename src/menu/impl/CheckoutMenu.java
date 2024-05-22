@@ -3,19 +3,21 @@ package menu.impl;
 import java.util.Scanner;
 
 import config.ApplicationContext;
-import enteti.Order;
-import enteti.impl.DefaultOrder;
+import enteti.Purchase;
+import enteti.impl.DefaultPurchase;
 import menu.Menu;
-import services.OrderManagementService;
-import services.impl.DefaultOrderManagementService;
+import services.PurchaseManagementService;
 
 public class CheckoutMenu implements Menu {
+	
+	private static final String CONFIRMATION_CREDIT_CARD_WORD = "confirm";
+	
 	private ApplicationContext context;
-	private OrderManagementService orderManagementService;
+	private PurchaseManagementService purchaseManagementService;
 
 	{
 		context = ApplicationContext.getInstance();
-		orderManagementService = DefaultOrderManagementService.getInstance();
+		purchaseManagementService = new MySqlPurchaseManagementService();
 	}
 
 	@Override
@@ -37,13 +39,17 @@ public class CheckoutMenu implements Menu {
 	}
 
 	private boolean createOrder(String creditCardNumber) {
-		Order order = new DefaultOrder();
+		Purchase order = new DefaultPurchase();
+		
+		if (creditCardNumber.equalsIgnoreCase(CONFIRMATION_CREDIT_CARD_WORD)) {
+			creditCardNumber = context.getloggedinUser().getCreditCard();
+		}
 		if (!order.isCreditCardNumbervalid(creditCardNumber)) {
 			return false;
 		}
 		
 		order.setcreditcardnumber(creditCardNumber);
-		order.setproducts(context.getSessioncart().getproducts());
+		order.setproducts(context.getSessioncart().getProducts());
 		order.setCustomerId(context.getloggedinUser().getId());
 		orderManagementService.addOrder(order);
 		// TODO Auto-generated method stub

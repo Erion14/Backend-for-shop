@@ -1,5 +1,6 @@
 package enteti.impl;
 
+import annotations.Validate;
 import enteti.User;
 
 public class DefaultUser implements User{
@@ -7,71 +8,146 @@ public class DefaultUser implements User{
 	private static int usercount=0;
 	
 	private int id;
-	private String firstname;
-	private String lastname;
-	private String password;
-	private String email;
+	
+	@Validate(pattern = "[a-zA-z]+")
+	private String firstName;
+	
+	@Validate(pattern = "[a-zA-z]+")
+	private String lastName;
+	
+	private String Password;
+	
+	@Validate(pattern = ".+@.+")
+	private String Email;
+	
+	private String roleName;
+	private double money;
+	private String creditCard;
+	
 	
 	{
 		id = ++usercount;
 	}
 
-	public DefaultUser(String firstname, String lastname, String password , String email) {
-		this.firstname=firstname;
-		this.lastname=lastname;
-		this.password=password;
-		this.email=email;
+	
+	
+	public DefaultUser() {
+		
 	}
-	@Override
-	public String getFirstname() {
-		// TODO Auto-generated method stub
-		return this.firstname;
-	}
-
-	@Override
-	public String getLastname() {
-		// TODO Auto-generated method stub
-		return this.lastname;
+	
+	public DefaultUser(String firstName, String lastName, String password, String email, String creditCard) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		Password = password;
+		Email = email;
+		this.creditCard = creditCard;
 	}
 
-	@Override
-	public String getPassword() {
-		// TODO Auto-generated method stub
-		return this.password;
+
+	public DefaultUser(String firstName, String lastName, String password, String email) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		Password = password;
+		Email = email;
 	}
 
-	@Override
-	public String getEmail() {
-		// TODO Auto-generated method stub
-		return  this.email;
+
+	public DefaultUser(int id, String firstName, String lastName, String password, String email) {
+		super();
+		this.id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		Password = password;
+		Email = email;
 	}
 
-	@Override
+
 	public int getId() {
-		// TODO Auto-generated method stub
-		return this.id;
+		return id;
 	}
 
-	@Override
-	public void setPassword(String newPassword) {
-		if(password==null) {
-			return;
-		}
-		this.password=password;
-		
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
-	@Override
-	public void setEmail(String newEmail) {
-		if(newEmail==null) {
-			return;
-		}
-		this.email=newEmail;
-		
-		
+
+	public String getfirstName() {
+		return firstName;
 	}
-	void clear() {
-		usercount=0;
+
+
+	public void setfirstName(String firstName) {
+		this.firstName = firstName;
 	}
+
+
+	public String getlastName() {
+		return lastName;
+	}
+
+
+	public void setlastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+
+	public String getPassword() {
+		return Password;
+	}
+	
+	void clearState() {
+		usercount = 0;
+	}
+
+
+	public void setPassword(String password) {
+		Password = password;
+	}
+
+
+	public String getEmail() {
+		return Email;
+	}
+
+
+	public void setEmail(String email) {
+		Email = email;
+	}
+
+
+	public String getRoleName() {
+		return roleName;
+	}
+
+
+	public void setRoleName(String roleName) {
+		this.roleName = roleName;
+	}
+
+
+	public double getMoney() {
+		return money;
+	}
+
+
+	public void setMoney(double money) {
+		this.money = money;
+	}
+
+
+	public String getCreditCard() {
+		return creditCard;
+	}
+
+
+	public void setCreditCard(String creditCard) {
+		this.creditCard = creditCard;
+	}
+
+
+	
 
 }
