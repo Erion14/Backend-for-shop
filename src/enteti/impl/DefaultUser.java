@@ -147,6 +147,11 @@ public class DefaultUser implements User{
 		this.creditCard = creditCard;
 	}
 
+	public static void setCounter(int asInt) {
+		usercount = asInt;
+		
+	}
+
 
 	
 
