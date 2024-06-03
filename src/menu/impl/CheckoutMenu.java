@@ -7,6 +7,7 @@ import enteti.Purchase;
 import enteti.impl.DefaultPurchase;
 import menu.Menu;
 import services.PurchaseManagementService;
+import services.impl.MySqlPurchaseManagementService;
 
 public class CheckoutMenu implements Menu {
 	

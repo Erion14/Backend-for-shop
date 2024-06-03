@@ -1,5 +1,6 @@
 package dto.converter;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,6 +39,19 @@ public class UserDtoToUserConverter {
 		user.setCreditCard(userDto.getCreditCard());
 		
 		return user;
+	}
+	
+	public UserDto convertUserToUserDto(User user) {
+		UserDto userDto = new UserDto();
+		userDto.setId(user.getId());
+		userDto.setEmail(user.getEmail());
+		userDto.setFirstName(user.getfirstName());
+		userDto.setLastName(user.getlastName());
+		userDto.setPassword(user.getPassword());
+		userDto.setRoleDto(roleConverter.convertRoleNameToRoleDtoWithOnlyRoleName(user.getRoleName()));
+		userDto.setMoney(BigDecimal.valueOf(user.getMoney()));
+		userDto.setCreditCard(user.getCreditCard());
+		return userDto;
 	}
 	
 	public List<User> convertUserDtosToUsers(List<UserDto> userDtos){

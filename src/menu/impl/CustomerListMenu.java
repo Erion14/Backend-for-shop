@@ -6,14 +6,14 @@ import config.ApplicationContext;
 import enteti.User;
 import menu.Menu;
 import services.UserManagementService;
-import services.impl.DefaultUserManagementService;
+import services.impl.MySqlUserManagementService;
 
 public class CustomerListMenu implements Menu {
 	private ApplicationContext context;
 	private UserManagementService userManagementService;
 	
 	{
-		userManagementService = MySqlUserManagementService();
+		userManagementService = new MySqlUserManagementService();
 		context = ApplicationContext.getInstance();
 		
 	}

@@ -25,7 +25,7 @@ public class ProductDtoToProductConverter {
 		return products;
 	}
 
-	private Product convertProductDtoToProduct(ProductDto productDto) {
+	public Product convertProductDtoToProduct(ProductDto productDto) {
 		Product product = new DefaultProduct();
 		product.setId(productDto.getId());
 		product.setPrice(productDto.getPrice().doubleValue());

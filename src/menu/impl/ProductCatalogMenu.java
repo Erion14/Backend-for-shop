@@ -1,5 +1,6 @@
 package menu.impl;
 
+import java.util.List;
 import java.util.Scanner;
 
 import config.ApplicationContext;
@@ -7,7 +8,7 @@ import enteti.Cart;
 import enteti.Product;
 import menu.Menu;
 import services.ProductManagementService;
-import services.impl.DefaultProductManagementService;
+import services.impl.MySqlProductManagementService;
 
 public class ProductCatalogMenu implements Menu {
 	private ApplicationContext context;
@@ -91,7 +92,7 @@ public class ProductCatalogMenu implements Menu {
 	}
 
 	private void printProductsToConsole() {
-		Product[] products = productManagementService.getProducts();
+		List<Product> products = productManagementService.getProducts();
 		for (Product product : products) {
 			System.out.println(product);
 		}

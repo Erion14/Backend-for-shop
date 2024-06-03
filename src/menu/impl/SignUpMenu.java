@@ -7,7 +7,7 @@ import enteti.User;
 import enteti.impl.DefaultUser;
 import menu.Menu;
 import services.UserManagementService;
-import services.impl.DefaultUserManagementService;
+import services.impl.MySqlUserManagementService;
 
 public class SignUpMenu implements Menu {
 	private UserManagementService userManagementService;
@@ -39,7 +39,7 @@ public class SignUpMenu implements Menu {
 			User user = new DefaultUser(firstName,lastName,password,email, creditCard);
 			
 			String errorMessage = userManagementService.registerUser(user);
-			if (errorMessage == null || errorMessage.equals(MySqlUserManagementService)) {
+			if (errorMessage == null || errorMessage.equals(MySqlUserManagementService.SUCCESSFULL_REGISTRATION_MESSAGE)) {
 				context.setloggedinUser(user);
 				System.out.println("New user is created");
 				

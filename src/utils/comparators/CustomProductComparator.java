@@ -14,7 +14,7 @@ public class CustomProductComparator implements Comparator<Product>{
 			result = priceDelta < 0 ? -1 : (priceDelta == 0) ? 0 : 1;
 		}
 		if (result == 0) {
-			result = o1.getProductname().compareTo(o2.getProductname());
+			result = o1.getProductName().compareTo(o2.getProductName());
 		}
 		return result;
 	}

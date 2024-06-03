@@ -19,7 +19,6 @@ public class DefaultMailSender implements MailSender{
 
 
 	public void sendEmail(String sendTo, String messageToSend) {
-		// send email
 		
 	}
 	

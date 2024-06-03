@@ -6,7 +6,7 @@ import config.ApplicationContext;
 import enteti.User;
 import menu.Menu;
 import services.UserManagementService;
-import services.impl.DefaultUserManagementService;
+import services.impl.MySqlUserManagementService;
 
 public class SignInMenu implements Menu {
 	private ApplicationContext context;
@@ -14,7 +14,7 @@ public class SignInMenu implements Menu {
 	
 	{
 		context = ApplicationContext.getInstance();
-		userManagementService = new MySqlUserManagementService;
+		userManagementService = new MySqlUserManagementService();
 		
 	}
 

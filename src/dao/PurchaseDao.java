@@ -6,7 +6,7 @@ import dto.PurchaseDto;
 
 public interface PurchaseDao {
 	
-	void savePurchase(PurchaseDto order);
+	void savePurchase(PurchaseDto purchase);
 	
 	List<PurchaseDto> getPurchasesByUserId(int userId);
 	

@@ -3,10 +3,10 @@ package menu.impl;
 import java.util.List;
 
 import config.ApplicationContext;
-import enteti.Order;
 import enteti.Purchase;
 import menu.Menu;
 import services.PurchaseManagementService;
+import services.impl.MySqlPurchaseManagementService;
 
 public class MyOrdersMenu implements Menu{
 	private ApplicationContext context;
@@ -15,7 +15,7 @@ public class MyOrdersMenu implements Menu{
 	
 	{
 		context = ApplicationContext.getInstance();
-		purchaseManagementService = MySqlPurchaseManagementService;
+		purchaseManagementService = new MySqlPurchaseManagementService();
 	}
 
 	@Override
